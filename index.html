@@ -3,44 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TWRP Device Tree Generator: A powerful tool to create TWRP device trees easily.">
-    <meta name="keywords" content="TWRP, Device Tree, Android, Recovery, Open Source">
+    <meta name="description" content="TWRP Device Tree Generator: Create TWRP device trees effortlessly with our powerful, open-source tool.">
+    <meta name="keywords" content="TWRP, Device Tree, Android, Recovery, Open Source, Developer Tools">
     <meta name="author" content="Melek Saidani">
     <title>TWRP Device Tree Generator</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #007bff;
+            --secondary: #1a1a1a;
+            --text: #333;
+            --bg-light: #f8f9fa;
+            --white: #fff;
+            --gray: #6c757d;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            background-color: #f4f4f4;
-            color: #333;
+            color: var(--text);
+            background: var(--bg-light);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Navbar */
         .navbar {
-            background-color: #1a1a1a;
-            padding: 1rem 2rem;
+            background: var(--secondary);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
         }
 
-        .navbar .logo h1 {
-            color: #fff;
-            font-size: 1.5rem;
+        .logo a {
+            color: var(--white);
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
         }
 
         .nav-links {
-            list-style: none;
             display: flex;
+            list-style: none;
         }
 
         .nav-links li {
@@ -48,14 +73,16 @@
         }
 
         .nav-links a {
-            color: #fff;
+            color: var(--white);
             text-decoration: none;
             font-size: 1rem;
-            transition: color 0.3s;
+            font-weight: 500;
+            transition: var(--transition);
         }
 
-        .nav-links a:hover {
-            color: #00aaff;
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
         }
 
         .hamburger {
@@ -67,74 +94,103 @@
         .hamburger span {
             width: 25px;
             height: 3px;
-            background-color: #fff;
+            background: var(--white);
             margin: 2px 0;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Hero */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
             text-align: center;
+            color: var(--white);
+        }
+
+        .hero-content {
+            animation: fadeIn 1s ease;
         }
 
         .hero-content h1 {
-            color: #fff;
-            font-size: 3rem;
+            font-size: 3.5rem;
+            font-weight: 700;
             margin-bottom: 1rem;
         }
 
         .hero-content p {
-            color: #ddd;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .btn {
-            background-color: #00aaff;
-            color: #fff;
-            padding: 0.8rem 1.5rem;
-            text-decoration: none;
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.8rem 2rem;
             border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
         }
 
         .btn:hover {
-            background-color: #0088cc;
+            background: #0056b3;
+            transform: translateY(-2px);
         }
 
-        .features {
-            padding: 4rem 2rem;
-            text-align: center;
+        /* Sections */
+        section {
+            padding: 5rem 0;
         }
 
-        .features h2 {
+        section h2 {
             font-size: 2.5rem;
-            margin-bottom: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
         }
 
+        /* Features */
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
 
         .feature-card {
-            background-color: #fff;
+            background: var(--white);
             padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
         }
 
         .feature-card h3 {
@@ -142,17 +198,7 @@
             margin-bottom: 1rem;
         }
 
-        .installation, .contribute {
-            padding: 4rem 2rem;
-            background-color: #fff;
-            text-align: left;
-        }
-
-        .installation h2, .contribute h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
+        /* Installation */
         .installation ol {
             max-width: 800px;
             margin: 0 auto;
@@ -160,30 +206,57 @@
             line-height: 1.8;
         }
 
+        .installation li {
+            margin-bottom: 1.5rem;
+        }
+
         .installation pre {
-            background-color: #1a1a1a;
-            color: #fff;
-            padding: 1rem;
-            border-radius: 5px;
-            margin: 1rem 0;
+            background: var(--secondary);
+            color: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
             overflow-x: auto;
+            margin: 1rem 0;
         }
 
-        .contribute p {
+        /* FAQ */
+        .faq-grid {
             max-width: 800px;
-            margin: 0 auto 2rem;
-            font-size: 1.1rem;
+            margin: 0 auto;
         }
 
+        .faq-item {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+        }
+
+        .faq-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-item p {
+            display: none;
+        }
+
+        .faq-item.active p {
+            display: block;
+        }
+
+        /* Footer */
         footer {
-            background-color: #1a1a1a;
-            color: #fff;
+            background: var(--secondary);
+            color: var(--white);
+            padding: 3rem 0;
             text-align: center;
-            padding: 2rem;
         }
 
         footer a {
-            color: #00aaff;
+            color: var(--primary);
             text-decoration: none;
         }
 
@@ -191,6 +264,42 @@
             text-decoration: underline;
         }
 
+        .contact-form {
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--gray);
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .contact-form button {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .contact-form button:hover {
+            background: #0056b3;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -198,9 +307,10 @@
                 position: absolute;
                 top: 70px;
                 left: 0;
-                background-color: #1a1a1a;
+                background: var(--secondary);
                 width: 100%;
                 padding: 1rem;
+                text-align: center;
             }
 
             .nav-links.active {
@@ -216,7 +326,7 @@
             }
 
             .hero-content h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
 
             .hero-content p {
@@ -227,99 +337,170 @@
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo">
-            <h1>TWRP Generator</h1>
-        </div>
-        <ul class="nav-links" aria-hidden="true">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#installation">Installation</a></li>
-            <li><a href="#contribute">Contribute</a></li>
-        </ul>
-        <div class="hamburger" aria-label="Menu toggle">
-            <span></span>
-            <span></span>
-            <span></span>
+        <div class="container">
+            <div class="logo">
+                <a href="#home">TWRP Generator</a>
+            </div>
+            <ul class="nav-links" aria-hidden="true">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#installation">Installation</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contribute">Contribute</a></li>
+            </ul>
+            <div class="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </nav>
 
     <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>TWRP Device Tree Generator</h1>
-            <p>A powerful tool to create TWRP device trees with ease and efficiency.</p>
-            <a href="https://github.com/saidanimelek26/Tree-Twrp-Generator-windows/releases/download/v1/TWRPGEN.zip" class="btn">Download Now</a>
+        <div class="container">
+            <div class="hero-content">
+                <h1>TWRP Device Tree Generator</h1>
+                <p>Create TWRP device trees effortlessly with our powerful, open-source tool designed for Android developers.</p>
+                <a href="https://github.com/saidanimelek26/Tree-Twrp-Generator-windows/releases/download/v1/TWRPGEN.zip" class="btn">Download Now</a>
+            </div>
         </div>
     </section>
 
     <section id="features" class="features">
-        <h2>Features</h2>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <h3>Compressed File Support</h3>
-                <p>Handles .img, .tar, .rar, and .lz4 formats for seamless image processing.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Graphical User Interface</h3>
-                <p>User-friendly GUI with clear operation logs.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Automated Generation</h3>
-                <p>Quickly generates device trees with support for fstab and init.rc files.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Advanced Customization</h3>
-                <p>Easily modify kernel settings and device information.</p>
+        <div class="container">
+            <h2>Why Choose Our Tool?</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <i class="fas fa-file-archive"></i>
+                    <h3>Compressed File Support</h3>
+                    <p>Seamlessly handle .img, .tar, .rar, and .lz4 formats for efficient image processing.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-desktop"></i>
+                    <h3>Intuitive GUI</h3>
+                    <p>Enjoy a user-friendly graphical interface with detailed operation logs.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Automated Generation</h3>
+                    <p>Generate device trees quickly with support for fstab and init.rc files.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-tools"></i>
+                    <h3>Advanced Customization</h3>
+                    <p>Modify kernel settings and device information with ease.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="installation" class="installation">
-        <h2>Installation</h2>
-        <ol>
-            <li>Download the tool <a href="https://github.com/saidanimelek26/Tree-Twrp-Generator-windows/releases/download/v1/TWRPGEN.zip">here</a>.</li>
-            <li>Password:
-                <pre><code>melek</code></pre>
-            </li>
-            <li>Join our Telegram group:
-                <a href="https://t.me/+-lru_CNdIYoyZTI8" target="_blank" style="text-decoration: none; color: #0088cc;">
-                    <i class="fab fa-telegram fa-2x"></i> Telegram
-                </a>
-            </li>
-        </ol>
+        <div class="container">
+            <h2>Installation Guide</h2>
+            <ol>
+                <li>Download the tool from our <a href="https://github.com/saidanimelek26/Tree-Twrp-Generator-windows/releases/download/v1/TWRPGEN.zip">GitHub release page</a>.</li>
+                <li>Use the following password to extract the file:
+                    <pre><code>melek</code></pre>
+                </li>
+                <li>Join our community on <a href="https://t.me/+-lru_CNdIYoyZTI8" target="_blank">Telegram</a> for support and updates.</li>
+            </ol>
+        </div>
+    </section>
+
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>What is TWRP Device Tree Generator?</h3>
+                    <p>It's an open-source tool designed to simplify the creation of TWRP device trees for Android devices.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Is it free to use?</h3>
+                    <p>Yes, the tool is completely free and open-source under the MIT license.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Which platforms are supported?</h3>
+                    <p>Currently, the tool is available for Windows, with Linux support planned for future releases.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section id="contribute" class="contribute">
-        <h2>Contribute</h2>
-        <p>Want to help improve the TWRP Device Tree Generator? Join our community on <a href="https://t.me/+-lru_CNdIYoyZTI8" target="_blank">Telegram</a> or contribute directly on <a href="https://github.com/saidanimelek26/Tree-Twrp-Generator-windows">GitHub</a>.</p>
+        <div class="container">
+            <h2>Contribute to the Project</h2>
+            <p>Join our growing community of developers! Contribute code, report bugs, or suggest features on <a href="https://github.com/saidanimelek26/Tree-Twrp-Generator-windows">GitHub</a> or connect with us on <a href="https://t.me/+-lru_CNdIYoyZTI8" target="_blank">Telegram</a>.</p>
+            <a href="https://github.com/saidanimelek26/Tree-Twrp-Generator-windows" class="btn">Get Started</a>
+        </div>
     </section>
 
     <footer>
-        <p>Developed by <a href="https://www.facebook.com/no.idea.120/">Melek Saidani</a> | © 2025</p>
-        <p><a href="https://www.facebook.com/no.idea.120">Contact Us</a></p>
+        <div class="container">
+            <p>Developed by <a href="https://www.facebook.com/no.idea.120/">Melek Saidani</a> | © 2025 TWRP Generator</p>
+            <div class="contact-form">
+                <h3>Contact Us</h3>
+                <form>
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" rows="4" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+            <p>Follow us on <a href="https://t.me/+-lru_CNdIYoyZTI8" target="_blank">Telegram</a> | <a href="https://www.facebook.com/no.idea.120">Facebook</a></p>
+        </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Hamburger Menu
             const hamburger = document.querySelector('.hamburger');
             const navLinks = document.querySelector('.nav-links');
 
             hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
                 const isActive = navLinks.classList.toggle('active');
                 navLinks.setAttribute('aria-hidden', !isActive);
             });
 
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
+            // Smooth Scroll and Active Link
+            const navLinksItems = document.querySelectorAll('.nav-links a');
+            navLinksItems.forEach(link => {
+                link.addEventListener('click', (e) => {
                     e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
+                    document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+                    navLinksItems.forEach(item => item.classList.remove('active'));
+                    link.classList.add('active');
                     if (navLinks.classList.contains('active')) {
+                        hamburger.classList.remove('active');
                         navLinks.classList.remove('active');
                         navLinks.setAttribute('aria-hidden', 'true');
                     }
                 });
             });
+
+            // FAQ Toggle
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    item.classList.toggle('active');
+                });
+            });
+
+            // Lazy Load Images
+            const images = document.querySelectorAll('img');
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src;
+                            observer.unobserve(img);
+                        }
+                    });
+                });
+                images.forEach(img => observer.observe(img));
+            }
         });
     </script>
 </body>
