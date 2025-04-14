@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="TWRP Device Tree Generator: A powerful tool to create TWRP device trees easily.">
     <meta name="keywords" content="TWRP, Device Tree, Android, Recovery, Open Source">
+    <meta name="author" content="Melek Saidani">
     <title>TWRP Device Tree Generator</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -67,6 +69,7 @@
             height: 3px;
             background-color: #fff;
             margin: 2px 0;
+            transition: all 0.3s ease;
         }
 
         .hero {
@@ -188,7 +191,6 @@
             text-decoration: underline;
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -224,25 +226,23 @@
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="logo">
             <h1>TWRP Generator</h1>
         </div>
-        <ul class="nav-links">
+        <ul class="nav-links" aria-hidden="true">
             <li><a href="#home">Home</a></li>
             <li><a href="#features">Features</a></li>
             <li><a href="#installation">Installation</a></li>
             <li><a href="#contribute">Contribute</a></li>
         </ul>
-        <div class="hamburger">
+        <div class="hamburger" aria-label="Menu toggle">
             <span></span>
             <span></span>
             <span></span>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>TWRP Device Tree Generator</h1>
@@ -251,7 +251,6 @@
         </div>
     </section>
 
-    <!-- Features Section -->
     <section id="features" class="features">
         <h2>Features</h2>
         <div class="feature-grid">
@@ -274,28 +273,28 @@
         </div>
     </section>
 
-    <!-- Installation Section -->
     <section id="installation" class="installation">
         <h2>Installation</h2>
         <ol>
-            <li>Download the tool <a href="https://github.com/saidanimelek26/Tree-Twrp-Generator-windows/releases/download/v1/TWRPGEN.zip">Download</a>.</li>
-            </li>
+            <li>Download the tool <a href="https://github.com/saidanimelek26/Tree-Twrp-Generator-windows/releases/download/v1/TWRPGEN.zip">here</a>.</li>
             <li>Password:
-                <pre><code>Password : melek</code></pre>
+                <pre><code>melek</code></pre>
             </li>
-            <li>Group Telegram:
+            <li>Join our Telegram group:
                 <a href="https://t.me/+-lru_CNdIYoyZTI8" target="_blank" style="text-decoration: none; color: #0088cc;">
-            <i class="fab fa-telegram fa-2x"></i>
-                    
-        </a>
-
+                    <i class="fab fa-telegram fa-2x"></i> Telegram
+                </a>
             </li>
         </ol>
     </section>
 
-    <!-- Footer -->
+    <section id="contribute" class="contribute">
+        <h2>Contribute</h2>
+        <p>Want to help improve the TWRP Device Tree Generator? Join our community on <a href="https://t.me/+-lru_CNdIYoyZTI8" target="_blank">Telegram</a> or contribute directly on <a href="https://github.com/saidanimelek26/Tree-Twrp-Generator-windows">GitHub</a>.</p>
+    </section>
+
     <footer>
-        <p>Developed by <a href="https://www.facebook.com/no.idea.120/">Melek saidani</a> | © 2025</p>
+        <p>Developed by <a href="https://www.facebook.com/no.idea.120/">Melek Saidani</a> | © 2025</p>
         <p><a href="https://www.facebook.com/no.idea.120">Contact Us</a></p>
     </footer>
 
@@ -305,7 +304,8 @@
             const navLinks = document.querySelector('.nav-links');
 
             hamburger.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
+                const isActive = navLinks.classList.toggle('active');
+                navLinks.setAttribute('aria-hidden', !isActive);
             });
 
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -316,6 +316,7 @@
                     });
                     if (navLinks.classList.contains('active')) {
                         navLinks.classList.remove('active');
+                        navLinks.setAttribute('aria-hidden', 'true');
                     }
                 });
             });
